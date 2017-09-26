@@ -27,6 +27,7 @@ public class RoverRunner
         System.out.println(r5);
         
         r4.kill(r5);
+        r5.kill(r4);
         
         r1.setName("Sojourner");
         System.out.println(r1);

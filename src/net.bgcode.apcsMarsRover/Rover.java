@@ -76,11 +76,12 @@ public class Rover
             if (success) {
                 System.out.printf("%s killed %s.%n", this.name, other.name);
             } else {
-                System.err.printf("ERROR: %s can't kill %s because it was already dead!%n",
-                                   this.name, other.name);
+                System.err.printf("ERROR: %s can't kill %s because %s was already dead!%n",
+                                   this.name, other.name, other.name);
             }
             return success;
         }
+        System.err.printf("ERROR: %s can't kill other rovers -- it's dead!%n", this.name);
         return false;
     }
     
