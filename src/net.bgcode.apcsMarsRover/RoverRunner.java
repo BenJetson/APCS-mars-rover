@@ -1,4 +1,4 @@
-package net.bgcode.apcs-mars-rover;
+ 
 
 /**
  * Write a description of class RoverRunner here.
@@ -15,7 +15,20 @@ public class RoverRunner
         Rover r2 = new Rover("Spirit");
         Rover r3 = new Rover("Adventure");
         Rover r4 = new Rover("Danger");
+        Rover r5 = new Rover("Motion");
         
+        r5.rotateRight();
+        for (int i = 0; i < 5; i++) {
+            r5.move();
+        }
+        r5.rotateRight();
+        r5.move();
+        r5.move();
+        System.out.println(r5);
+        
+        r4.kill(r5);
+        
+        r1.setName("Sojourner");
         System.out.println(r1);
         
         r1.move();
