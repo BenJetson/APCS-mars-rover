@@ -40,7 +40,7 @@ public class Rover
         this.name = name;
     }
     
-    public String getDirection() {
+    public String getDirectionName() {
         if (dir == 0) {
             return "North";
         } else if (dir ==0.5) {
@@ -87,39 +87,42 @@ public class Rover
     
     public void move()
     {
-        if (dir == 0)
-        {
-            y++;
+        if (isAlive) {
+            if (dir == 0)
+            {
+                y++;
+            }
+            else if (dir == 0.5) {
+                x += Math.cos(Math.PI / 4);
+                y += Math.sin(Math.PI / 4);
+            }
+            else if (dir == 1)
+            {
+                x++;
+            }
+            else if (dir == 1.5) {
+                x = Math.cos(Math.PI / 4);
+                y -= Math.sin(Math.PI / 4);
+            }
+            else if (dir == 2)
+            {
+                y--;
+            }
+            else if (dir == 2.5) {
+                x -= Math.cos(Math.PI / 4);
+                y -= Math.sin(Math.PI / 4);
+            }
+            else if (dir == 3) {
+                x--;
+            }
+            else if (dir == 3.5) {
+                x -= Math.cos(Math.PI / 4);
+                y += Math.sin(Math.PI / 4);
+            }
+            
+            System.out.println(name + " moved in direction " + dir);
         }
-        else if (dir == 0.5) {
-            x += Math.cos(Math.PI / 4);
-            y += Math.sin(Math.PI / 4);
-        }
-        else if (dir == 1)
-        {
-            x++;
-        }
-        else if (dir == 1.5) {
-            x = Math.cos(Math.PI / 4);
-            y -= Math.sin(Math.PI / 4);
-        }
-        else if (dir == 2)
-        {
-            y--;
-        }
-        else if (dir == 2.5) {
-            x -= Math.cos(Math.PI / 4);
-            y -= Math.sin(Math.PI / 4);
-        }
-        else if (dir == 3) {
-            x--;
-        }
-        else if (dir == 3.5) {
-            x -= Math.cos(Math.PI / 4);
-            y += Math.sin(Math.PI / 4);
-        }
-        
-        System.out.println(name + " moved in direction " + dir);
+        System.err.printf("ERROR: %s can't move -- it's dead!%n", this.name);
     }
     
     public void rotateLeft() 
@@ -134,8 +137,7 @@ public class Rover
         System.out.println(name + " turned to the left");        
     }
     
-    public void rotateRight()
-    {
+    public void rotateRight() {
         dir += 0.5;
         
         if (dir == 4)
@@ -148,12 +150,13 @@ public class Rover
     
     public void takePic() {
         System.out.printf("%n took a picture at [%d, %d] facing %s.", 
-                          name, x, y, this.getDirection());
+                          name, x, y, this.getDirectionName());
         this.numPics++;
     }
 
     public String toString() 
     {
-        return "Rover[name=" + name + ", x=" + x + ", y=" + y + ", dir=" + dir + "]";
+        return String.format("Rover[name=%s, x=%d, y=%d, dir=%d, numPics=%d, isAlive=%b]",
+                               name, x, y, dir, numPics, isAlive);
     }
 }
