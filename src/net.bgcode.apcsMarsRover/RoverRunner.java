@@ -28,6 +28,7 @@ public class RoverRunner
         
         r4.kill(r5);
         r5.kill(r5);
+        r5.move();
         
         r4.rotate(6);
         
@@ -57,6 +58,10 @@ public class RoverRunner
         r3.move();
         r3.rotateLeft();
         r3.rotateRight();
+        
+        r3.goHome();
+        r3.goHome();
+        r3.goHome();
 
         System.out.println(r3);
 
