@@ -11,7 +11,7 @@ public class Rover
     private String name;
     private double x;
     private double y;
-    private double dir; // 0=North, 1=East, 2=South, 3=West
+    private double dir; 
     private int numPics;
     private int energyLevel;
     private boolean isAlive;
@@ -64,7 +64,7 @@ public class Rover
     public String getDirectionName() {
         if (dir == 0) {
             return "North";
-        } else if (dir ==0.5) {
+        } else if (dir == 0.5) {
             return "Northeast";
         } else if (dir == 1) {
             return "East";
@@ -140,7 +140,6 @@ public class Rover
                 x -= Math.cos(Math.PI / 4) * numSpaces;
                 y += Math.sin(Math.PI / 4) * numSpaces;
             }
-            energyLevel -= numSpaces * ENERGY_MOVEMENT;
             System.out.printf("%s moved %d spaces in direction %f.%n",
                 name, numSpaces, dir);
         }
@@ -213,13 +212,16 @@ public class Rover
             energyLevel += amount;
             return true;
         }
+        
         System.err.printf("ERROR: Cannot charge rover %s by amount %d. Max is %d.%n",
             name, amount, MAX_ENERGY);
+            
         return false;
     }
 
     public void takePic() {
         boolean hasMemory = (numPics < MAX_PICS);
+        
         if (lessEnergyCheck("take a picture", ENERGY_PHOTO) && hasMemory) {
             System.out.printf("%s took a picture at [%f, %f] facing %s.%n", 
                 name, x, y, this.getDirectionName());
